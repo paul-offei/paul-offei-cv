@@ -48,6 +48,12 @@ See detailed and step-by-step instructions in [customize.md](customize.md) on ho
 
 - **:pencil2: Author Role Annotations**: Mark equal contribution (*) and corresponding authors (†) in publication lists
 
+## Philosophy
+
+**Goals:** Aesthetic looking, "batteries-included" for popular features, easy to customize (to add your own features)
+
+**Non-Goals:** Implement all possible fancy features (b/c increases complexity)
+
 ## Create Your Own Repository
 
 **Want version control?** Create your own GitHub repo instead of just using Overleaf:

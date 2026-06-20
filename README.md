@@ -1,82 +1,195 @@
-# CleanCV
+# My Personal CV
+This CV is base on [CleanCV Template](https://github.com/giladturok/CleanCV) with a little modification for my own preference and style. 
 
-**Modern, minimal, and modular LaTeX CV template** :sparkles: :page_facing_up:
+# How It Works
 
-Many LaTeX CV templates are ugly, hard to use, or both. CleanCV gives you clean design, effortless customization, and advanced features — so you can focus on your research, not formatting.
+The CV use two commands, defined in `cv.sty`, to handle all your CV content:
 
-See the [example cv](assets/example_cv.pdf) or preview the first 2 pages below (*content generated with Claude*):
+## `\cvblock` — For Important Entries
+Use for education, experience, major projects. Supports optional bullet points.
 
-<p align="center">
-  <img src="assets/pg1_example_cv.svg" width="49%" />
-  <img src="assets/pg2_example_cv.svg" width="49%" />
-</p>
+```latex
+\cvblock[
+    \item Published 4 papers in top-tier conferences (ICML, NeurIPS)
+    \item Mentored 3 undergraduate research assistants
+    \item Received departmental teaching award
+]{Stanford University}{Stanford, CA}{PhD Candidate in Computer Science}{2020-2024}
+```
 
-> [!TIP]
-> :star: Consider giving CleanCV a star on Github. It will guarantee you tenure!
-## Quick Start
+**Output:**
 
-1. **[Create your CV instantly in Overleaf](https://www.overleaf.com/docs?snip_uri=https://github.com/giladturok/CleanCV/archive/main.zip)** — Click to open a new Overleaf project with CleanCV pre-loaded
-2. **Replace example content** — Update `main.tex` and `publications.bib` with your information
-  
-See detailed and step-by-step instructions in [customize.md](customize.md) on how to use the advanced features.
+```text
+Stanford University                                   Stanford, CA
+PhD Candidate in Computer Science                        2020-2024
+- Published 4 papers in top-tier conferences (ICML, NeurIPS)
+- Mentored 3 undergraduate research assistants  
+- Received departmental teaching award
+```
 
-*To set up your own GitHub repository with version control, see the [Create Your Own Repository](#create-your-own-repository) section below.*
+## `\cvitem` — For List Entries
+Use for awards, talks, service. Clean one-line format within lists.
 
-## Features
+```latex
+\section*{Awards \& Honors}
+\begin{itemize}
+    \cvitem{NSF Graduate Research Fellowship}{National Science Foundation}{2021-2024}
+    \cvitem{Best Paper Award}{ICML 2023}{June 2023}
+    \cvitem{Outstanding TA Award}{Stanford CS Department}{Spring 2022}
+\end{itemize}
+```
 
-- **:file_folder: Smart Sections**: Includes common academic sections, all easily configurable
+**Output:**
 
-  - Default sections: `Research Interests`, `Education`, `Experience`, `Awards & Honors`, `Publications`, `Skills`, `Talks & Presentations`, `Teaching`, `Mentoring`, `Service`
+```text
+Awards & Honors
+- Graduate Research Fellowship, National Science Foundation ··· 2021-2024
+- Best Paper Award, ICML 2023 ································· June 2023
+- Outstanding TA Award, Stanford CS Department ·············· Spring 2022
+```
 
-- **:book: Professional Typography**: Features the ET Book font with spacing optimized for readability
+## When to Use Each Command
 
-- **:wrench: Easy Customization**: Change colors, formatting, and styling without breaking anything
+Instead of one-size-fits-all formatting, CleanCV lets you choose the right command for each type of content. Different information deserves different presentation.
 
-- **:memo: Commented Style File**: Well-commented `cleancv.sty` that you'll easily understand
+- **`\cvblock`**: Major entries with details (education, experience, projects)  
+- **`\cvitem`**: List entries (awards, talks, service)  
+- **Plain text**: Simple content (skills, interests)
 
-- **:zap: Two-Command System**: `\cvblock` for detailed entries, `\cvitem` for simple lists — it's all you need to learn
+```latex
+% List entries
+\section*{Awards}
+\begin{itemize}
+    \cvitem{Best Paper Award}{ICML 2023}{June 2023}
+\end{itemize}
 
-- **:bust_in_silhouette: Contact Integration**: Professional contact bar with icons for email, GitHub, LinkedIn, Google Scholar, etc.
-
-- **:arrows_counterclockwise: CV/Resume Dual Mode**: Generate both comprehensive CV and condensed resume from one document
-
-- **:clock10: Last-updated Date**: Automatically generates last-updated date on every compilation
-
-- **:books: Automated Bibliography**: Generates a formatted publication list directly from your `.bib` file
-
-- **:star: Personal Name Bolding**: Automatically bolds your name in publication lists for instant recognition
-
-- **:pencil2: Author Role Annotations**: Mark equal contribution (*) and corresponding authors (†) in publication lists
-
-## Philosophy
-
-**Goals:** Aesthetic looking, "batteries-included" for popular features, easy to customize (to add your own features)
-
-**Non-Goals:** Implement all possible fancy features (b/c increases complexity)
-
-## Create Your Own Repository
-
-**Want version control?** Create your own GitHub repo instead of just using Overleaf:
-
-1. **Use template** — Click **"Use this template"** button at the top of [CleanCV repository](https://github.com/giladturok/CleanCV) to create your own copy
-
-2. **Edit your files:**
-   - **Locally:** Clone and edit with any LaTeX editor
-     ```bash
-     git clone https://github.com/yourusername/your-cv-repo.git
-     # Edit main.tex and publications.bib, then compile
-     ```
-   - **Overleaf:** Edit in Overleaf by syncing your Github repo to Overleaf [(guide)](https://www.overleaf.com/learn/how-to/GitHub_Synchronization) (premium required)
-
-## User Gallery
-
-Researchers worldwide use CleanCV for their academic profiles.
-
-See examples: [Gilad Turok](https://giladturok.com/cv), [Jane Doe](https://janedoe.com/cv), [John Smith](https://johnsmith.com/cv).
+% Plain text for skills  
+\section*{Technical Skills}
+\textbf{Programming:} Python, R, MATLAB, C++ \\
+\textbf{Tools:} Git, Docker, Slurm, LaTeX
+```
 
 > [!TIP]
-> **Using CleanCV?** We'd love to feature you! [Open an issue](https://github.com/giladturok/CleanCV/issues) with a link to your CV to be addded to our gallery.
+> When in doubt: Need bullet points or multiple lines? Use `\cvblock`. Single line in a list? Use `\cvitem`. Just text? Use neither.
 
-## Acknowledgments
+# Customize
 
-CleanCV is heavily adapted from LaTeX CV templates by [Bastian Rieck](https://github.com/Pseudomanifold/latex-cv) and [Corey Stephan](https://github.com/historical-theology/cv). Please see their work.
+## Manage CV Sections
+Add, remove, or reorder sections (and subsections) as needed.
+
+- Default sections: `Research Interests`, `Education`, `Experience`, `Awards & Honors`, `Publications`, `Skills`, `Code`, `Talks & Presentations`, `Teaching`, `Mentoring`, `Service`
+
+Here's an example of adding a new section with its own subsections:
+
+```latex
+\section*{Hobbies} % Add a new section
+
+\subsection*{Travel} % Add a subsection
+\begin{itemize}
+    \cvitem{Europe}{Visited 10 countries, focusing on cultural heritage}{2019}
+    \cvitem{Asia}{Explored diverse landscapes and traditions}{2021}
+\end{itemize}
+
+\subsection*{Cooking} % Another subsection
+\begin{itemize}
+    \cvitem{Italian Cuisine}{Specialized in pasta and sauces}{2015-present}
+    \cvitem{Baking}{Cakes, pastries, and bread-making}{2018-present}
+\end{itemize}
+```
+
+- Suggested additional sections: `Media Coverage`, `Blog`, `Grants & Fundraising`, `Professional Affiliations`, `References`
+
+## Change Colors and Styling
+Edit key styling options in `CleanCV.sty`:
+```latex
+% Change primary color theme
+\definecolor{primary}{RGB}{83, 39, 115}  % Default purple
+\definecolor{primary}{RGB}{0, 102, 204}   % Academic blue  
+\definecolor{primary}{RGB}{153, 51, 102}  % Professional burgundy
+
+% Adjust page margins
+\geometry{
+  letterpaper,          % Or a4paper
+  left=2.5cm,           % Left margin
+  right=2.5cm,          % Right margin  
+  top=2cm,              % Top margin
+  bottom=2.5cm          % Bottom margin
+}
+
+% Modify spacing
+\setlength{\parskip}{0.2em}                    % Paragraph spacing
+\titlespacing*{\section}{0pt}{1.5em}{0.5em}    % Section spacing
+```
+
+## CV vs Resume Mode
+Generate different versions by editing the top of `main.tex`:
+```latex
+\cvtrue   % Full academic CV (includes all sections)
+\cvfalse  % Condensed resume (excludes \ifcv...\fi sections)
+```
+
+Wrap optional sections in conditional blocks:
+```latex
+\ifcv
+% Everything between \ifcv and \fi only appears when \cvtrue is set
+% Use this to hide detailed sections in resume mode
+\section*{Teaching Experience}  % Only appears in CV mode
+\cvblock{Course Name}{University}{Instructor}{Semester}
+\fi  % Ends the conditional block
+```
+
+> [!TIP]
+> To make your resume fit on one page, increase the page height in `cv.sty`:
+> ```latex
+> \geometry{
+>     letterpaper,
+>     left=2.5cm,
+>     right=2.5cm,
+>     top=2cm,
+>     bottom=2.5cm,
+>     pageheight=30cm        % Add this argument and set the appropriate height
+> }
+> ```
+
+## Customize Contact Bar
+Modify the contact bar by editing icons or removing sections in `assets/contact.tex`:
+```latex
+% Standard contact bar
+\contactbar{yoursite.com}{you@email.com}{github-user}{linkedin}{scholar-url}{Your City}
+
+% Skip unused platforms by leaving empty
+\contactbar{yoursite.com}{you@email.com}{}{linkedin}{}{Your City}
+```
+
+## Name Highlighting in Publications
+Your name appears bold in every publication automatically:
+```latex
+% In main.tex - must match your name exactly in .bib file
+\boldname{YourLast}{YourFirst}{Initial}
+```
+
+> [!IMPORTANT]
+> The name in `\boldname{}` must match exactly how your name appears in your `.bib` file, including capitalization and any middle initials. If no middle initials, leave the brackets `{}` empty.
+
+## Author Annotations in Publications
+
+Add author annotations in `publications.bib` via the `author+an` field. Default annotations include equal contribution (*) and corresponding author (†).
+
+```latex
+@article{yourpaper2023,
+    title={Your Amazing Research},
+    author={Your Name and Collaborator Name and Third Author},
+    journal={Nature},
+    year={2023},
+    % Author annotations are assigned via numerical author ordering
+    % Separate authors with semicolons and separate multiple annotations with commas
+    author+an = {1=equal; 2=equal,corresponding; 3=corresponding}
+}
+```
+
+**Output**:
+```text
+Your Name*, Collaborator Name*†, and Third Author†. “Your Amazing Research”. In: Nature (2023).
+```
+
+`template.tex` is used for experimenting before it goes into `assets` and `paul-offei-cv.tex` which is our main CV
+

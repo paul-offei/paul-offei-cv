@@ -1,6 +1,9 @@
 # My Personal CV
 This CV is base on [CleanCV Template](https://github.com/giladturok/CleanCV) with a little modification for my own preference and style. 
 
+- `template.tex` is used for experimenting before it goes into `assets` and `paul-offei-cv.tex` which is our main CV
+
+
 # How It Works
 
 The CV use two commands, defined in `cv.sty`, to handle all your CV content:
@@ -191,5 +194,4 @@ Add author annotations in `publications.bib` via the `author+an` field. Default 
 Your Name*, Collaborator Name*†, and Third Author†. “Your Amazing Research”. In: Nature (2023).
 ```
 
-`template.tex` is used for experimenting before it goes into `assets` and `paul-offei-cv.tex` which is our main CV
 

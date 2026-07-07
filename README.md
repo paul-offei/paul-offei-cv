@@ -1,7 +1,7 @@
 # My Personal CV
 This CV is base on [CleanCV Template](https://github.com/giladturok/CleanCV) with a little modification for my own preference and style. 
 
-- `template.tex` is used for experimenting before it goes into `assets` and `paul-offei-cv.tex` which is our main CV
+- `template.tex` is used for experimenting before it goes into `assets` and `paul-offei-cv.tex` which is my main CV
 
 
 # How It Works

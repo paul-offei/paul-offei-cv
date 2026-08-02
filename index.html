@@ -1,15 +1,16 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>PAUL OFFEI CV</title>
-    
+
     <!-- Bootstrap 5 CSS -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
     <!-- Bootstrap Icons -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css">
-    
+
     <style>
         :root {
             --primary-dark: #1a1a2e;
@@ -31,7 +32,7 @@
         /* Custom Navbar Styling */
         .cv-navbar {
             background: var(--primary-dark);
-            box-shadow: 0 2px 10px rgba(0,0,0,0.15);
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.15);
         }
 
         .cv-navbar .navbar-brand {
@@ -82,7 +83,7 @@
             max-width: 900px;
             background: #fff;
             border-radius: 8px;
-            box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
             overflow: hidden;
             margin: 0 auto;
         }
@@ -126,13 +127,16 @@
 
         /* Print Styles */
         @media print {
+
             .cv-navbar,
             .mobile-fallback {
                 display: none !important;
             }
+
             .viewer-container {
                 padding: 0;
             }
+
             .pdf-wrapper {
                 box-shadow: none;
                 border-radius: 0;
@@ -145,22 +149,23 @@
             .viewer-container {
                 padding: 0.5rem;
             }
-            
+
             .pdf-wrapper {
                 border-radius: 6px;
             }
-            
+
             .cv-navbar .btn-cv {
                 padding: 0.4rem 0.9rem;
                 font-size: 0.85rem;
             }
-            
+
             .cv-navbar .navbar-brand {
                 font-size: 1.1rem;
             }
         }
 
         @media (max-width: 768px) {
+
             .pdf-wrapper iframe,
             .pdf-wrapper embed {
                 height: calc(100vh - 140px);
@@ -173,11 +178,19 @@
         }
 
         @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(10px); }
-            to { opacity: 1; transform: translateY(0); }
+            from {
+                opacity: 0;
+                transform: translateY(10px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
         }
     </style>
 </head>
+
 <body>
 
     <!-- Responsive Navbar -->
@@ -186,12 +199,13 @@
             <span class="navbar-brand mb-0">
                 <i class="bi bi-file-earmark-person me-2"></i>PAUL OFFEI CV
             </span>
-            
+
             <!-- Mobile Toggle -->
-            <button class="navbar-toggler border-0" type="button" data-bs-toggle="collapse" data-bs-target="#cvControls" aria-controls="cvControls" aria-expanded="false" aria-label="Toggle controls">
+            <button class="navbar-toggler border-0" type="button" data-bs-toggle="collapse" data-bs-target="#cvControls"
+                aria-controls="cvControls" aria-expanded="false" aria-label="Toggle controls">
                 <span class="navbar-toggler-icon"></span>
             </button>
-            
+
             <!-- Controls -->
             <div class="collapse navbar-collapse justify-content-end" id="cvControls">
                 <div class="d-flex flex-column flex-sm-row gap-2 mt-2 mt-sm-0">
@@ -209,17 +223,13 @@
     <!-- Main Viewer -->
     <div class="viewer-container fade-in">
         <div class="pdf-wrapper">
-            
+
             <!-- Desktop PDF Embed -->
             <div id="pdf-desktop" class="d-none d-md-block">
-                <embed 
-                    src="paul-offei-cv.pdf" 
-                    type="application/pdf"
-                    title="Paul Offei CV"
-                    width="100%"
-                    height="100%"
-                />
+                <embed src="paul-offei-cv.pdf" type="application/pdf" title="Paul Offei CV" width="100%"
+                    height="100%" />
             </div>
+
 
             <!-- Mobile Fallback (PDFs don't render well on mobile browsers) -->
             <div id="pdf-mobile" class="d-md-none mobile-fallback">
@@ -229,17 +239,38 @@
                 <h3>PDF Preview</h3>
                 <p class="px-3">
                     Mobile browsers cannot display PDFs directly in the page. 
-                    Please download or open the CV to view it.
+                    Please download the CV to view it.
                 </p>
                 <div class="d-flex flex-column gap-2 px-4">
                     <a href="paul-offei-cv.pdf" class="btn btn-cv btn-lg" download>
                         <i class="bi bi-download me-2"></i>Download CV
                     </a>
-                    <a href="paul-offei-cv.pdf" class="btn btn-cv btn-cv-secondary btn-lg" target="_blank">
-                        <i class="bi bi-box-arrow-up-right me-2"></i>Open in Browser
-                    </a>
                 </div>
             </div>
+
+            <!-- Mobile PDF Embed (iframe + object hybrid) -->
+            <div id="pdf-mobile" class="d-md-none">
+                <iframe src="paul-offei-cv.pdf#view=FitH" title="Paul Offei CV" width="100%"
+                    height="calc(100vh - 140px)" style="border: none; min-height: 500px;" loading="lazy">
+                    <!-- Fallback if iframe fails -->
+                    <object data="paul-offei-cv.pdf#view=FitH" type="application/pdf" width="100%"
+                        height="calc(100vh - 140px)" style="min-height: 500px;">
+                        <!-- Final fallback -->
+                        <div class="mobile-fallback">
+                            <div class="fallback-icon">
+                                <i class="bi bi-file-earmark-pdf"></i>
+                            </div>
+                            <h3>PDF Preview</h3>
+                            <p>Your browser cannot display this PDF. Please download it below.</p>
+                            <a href="paul-offei-cv.pdf" class="btn btn-cv" download>
+                                <i class="bi bi-download me-2"></i>Download CV
+                            </a>
+                        </div>
+                    </object>
+                </iframe>
+            </div>
+
+            
 
             <!-- Universal Fallback (if embed fails) -->
             <noscript>
@@ -289,4 +320,5 @@
         });
     </script>
 </body>
+
 </html>

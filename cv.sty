@@ -119,6 +119,31 @@
   \end{center}
 }
 
+% Local contact Bar
+\newcommand{\localcontactbar}[6]{
+  \begin{center}
+    \small
+    \faGlobe\space{\href{https://#1}{#1}} \enspace
+    \faEnvelope\space{\href{mailto:#2}{#2}} \enspace
+    \faGithub\space{\href{https://github.com/#3}{#3}} \enspace
+    \faLinkedin\space{\href{https://linkedin.com/in/#4}{#4}} \enspace
+    \faMapMarker\space{#5} \enspace
+     \faMobile\space{#6} \enspace
+  \end{center}
+}
+
+% Foreign Contact Bar
+\newcommand{\abroadcontactbar}[5]{
+  \begin{center}
+    \small
+    \faGlobe\space{\href{https://#1}{#1}} \enspace
+    \faEnvelope\space{\href{mailto:#2}{#2}} \enspace
+    \faGithub\space{\href{https://github.com/#3}{#3}} \enspace
+    \faLinkedin\space{\href{https://linkedin.com/in/#4}{#4}} \enspace
+    \faMapMarker\space{#5} \enspace
+  \end{center}
+}
+
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % CV/RESUME MODE SWITCH
 % Controls which sections are displayed
@@ -153,6 +178,18 @@
 %   #3: Date or date range
 \newcommand{\cvitem}[3]{
   \item #1, \emph{#2} \dotfill #3
+}
+
+% Simple single-line entry for referencing
+% Use for: reference or referee
+% Arguments:
+%   #1: Name
+%   #2: Position 
+%   #3: Organization
+%   #4  Email
+%   #5  Mobile
+\newcommand{\cvref}[5]{
+  \item \textbf{#1}, \textit{#2}, \textbf{\textit{#3}}, \emph{#4}, #5
 }
 
 % Configure itemize environment for compact, clean lists

@@ -4,69 +4,79 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>PAUL OFFEI CV</title>
+    
+    <!-- Bootstrap 5 CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Bootstrap Icons -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css">
+    
     <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
+        :root {
+            --primary-dark: #1a1a2e;
+            --accent: #e94560;
+            --accent-hover: #c73e54;
+            --secondary-dark: #16213e;
+            --secondary-hover: #0f3460;
+            --bg-body: #f0f2f5;
         }
+
         body {
             font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, sans-serif;
-            background: #f0f2f5;
+            background: var(--bg-body);
             min-height: 100vh;
             display: flex;
             flex-direction: column;
         }
-        header {
-            background: #1a1a2e;
-            color: #fff;
-            padding: 1.2rem 2rem;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
+
+        /* Custom Navbar Styling */
+        .cv-navbar {
+            background: var(--primary-dark);
             box-shadow: 0 2px 10px rgba(0,0,0,0.15);
         }
-        header h1 {
+
+        .cv-navbar .navbar-brand {
+            color: #fff !important;
             font-size: 1.4rem;
             font-weight: 600;
             letter-spacing: 0.5px;
         }
-        .controls {
-            display: flex;
-            gap: 0.8rem;
-            align-items: center;
-        }
-        .btn {
-            background: #e94560;
+
+        .cv-navbar .btn-cv {
+            background: var(--accent);
             color: #fff;
             border: none;
             padding: 0.5rem 1.2rem;
             border-radius: 6px;
-            cursor: pointer;
             font-size: 0.9rem;
             font-weight: 500;
             text-decoration: none;
-            transition: background 0.2s ease;
+            transition: all 0.2s ease;
             display: inline-flex;
             align-items: center;
             gap: 0.4rem;
         }
-        .btn:hover {
-            background: #c73e54;
+
+        .cv-navbar .btn-cv:hover {
+            background: var(--accent-hover);
+            color: #fff;
         }
-        .btn-secondary {
-            background: #16213e;
+
+        .cv-navbar .btn-cv-secondary {
+            background: var(--secondary-dark);
+            color: #fff;
         }
-        .btn-secondary:hover {
-            background: #0f3460;
+
+        .cv-navbar .btn-cv-secondary:hover {
+            background: var(--secondary-hover);
+            color: #fff;
         }
+
+        /* PDF Viewer Container */
         .viewer-container {
             flex: 1;
             padding: 1.5rem;
-            display: flex;
-            justify-content: center;
-            align-items: flex-start;
         }
+
         .pdf-wrapper {
             width: 100%;
             max-width: 900px;
@@ -74,25 +84,51 @@
             border-radius: 8px;
             box-shadow: 0 4px 20px rgba(0,0,0,0.1);
             overflow: hidden;
+            margin: 0 auto;
         }
-        embed, iframe {
+
+        .pdf-wrapper iframe,
+        .pdf-wrapper embed {
             width: 100%;
-            height: calc(100vh - 140px);
             border: none;
             display: block;
         }
-        .fallback {
+
+        /* Desktop height */
+        .pdf-wrapper iframe,
+        .pdf-wrapper embed {
+            height: calc(100vh - 120px);
+        }
+
+        /* Mobile Fallback Styling */
+        .mobile-fallback {
             padding: 3rem 2rem;
             text-align: center;
             color: #555;
         }
-        .fallback p {
+
+        .mobile-fallback .fallback-icon {
+            font-size: 4rem;
+            color: var(--accent);
             margin-bottom: 1rem;
-            font-size: 1rem;
         }
+
+        .mobile-fallback h3 {
+            color: var(--primary-dark);
+            margin-bottom: 0.5rem;
+        }
+
+        .mobile-fallback p {
+            margin-bottom: 1.5rem;
+            font-size: 1rem;
+            color: #666;
+        }
+
+        /* Print Styles */
         @media print {
-            header {
-                display: none;
+            .cv-navbar,
+            .mobile-fallback {
+                display: none !important;
             }
             .viewer-container {
                 padding: 0;
@@ -100,26 +136,157 @@
             .pdf-wrapper {
                 box-shadow: none;
                 border-radius: 0;
+                max-width: 100%;
             }
+        }
+
+        /* Responsive Adjustments */
+        @media (max-width: 576px) {
+            .viewer-container {
+                padding: 0.5rem;
+            }
+            
+            .pdf-wrapper {
+                border-radius: 6px;
+            }
+            
+            .cv-navbar .btn-cv {
+                padding: 0.4rem 0.9rem;
+                font-size: 0.85rem;
+            }
+            
+            .cv-navbar .navbar-brand {
+                font-size: 1.1rem;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .pdf-wrapper iframe,
+            .pdf-wrapper embed {
+                height: calc(100vh - 140px);
+            }
+        }
+
+        /* Smooth page load animation */
+        .fade-in {
+            animation: fadeIn 0.5s ease-in;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
         }
     </style>
 </head>
 <body>
-    <header>
-        <h1>PAUL OFFEI CV</h1>
-        <div class="controls">
-            <a href="paul-offei-cv.pdf" class="btn btn-secondary" download>⬇ Download</a>
-            <a href="paul-offei-cv.pdf" class="btn" target="_blank">↗ Open in New Tab</a>
+
+    <!-- Responsive Navbar -->
+    <nav class="navbar cv-navbar navbar-expand-sm navbar-dark">
+        <div class="container-fluid px-3 px-sm-4">
+            <span class="navbar-brand mb-0">
+                <i class="bi bi-file-earmark-person me-2"></i>PAUL OFFEI CV
+            </span>
+            
+            <!-- Mobile Toggle -->
+            <button class="navbar-toggler border-0" type="button" data-bs-toggle="collapse" data-bs-target="#cvControls" aria-controls="cvControls" aria-expanded="false" aria-label="Toggle controls">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            
+            <!-- Controls -->
+            <div class="collapse navbar-collapse justify-content-end" id="cvControls">
+                <div class="d-flex flex-column flex-sm-row gap-2 mt-2 mt-sm-0">
+                    <a href="paul-offei-cv.pdf" class="btn btn-cv btn-cv-secondary" download>
+                        <i class="bi bi-download"></i> <span class="d-inline">Download</span>
+                    </a>
+                    <a href="paul-offei-cv.pdf" class="btn btn-cv" target="_blank">
+                        <i class="bi bi-box-arrow-up-right"></i> <span class="d-inline">Open in New Tab</span>
+                    </a>
+                </div>
+            </div>
         </div>
-    </header>
-    <div class="viewer-container">
+    </nav>
+
+    <!-- Main Viewer -->
+    <div class="viewer-container fade-in">
         <div class="pdf-wrapper">
-            <embed 
-                src="paul-offei-cv.pdf" 
-                type="application/pdf"
-                title="paul-offei-cv"
-            />
+            
+            <!-- Desktop PDF Embed -->
+            <div id="pdf-desktop" class="d-none d-md-block">
+                <embed 
+                    src="paul-offei-cv.pdf" 
+                    type="application/pdf"
+                    title="Paul Offei CV"
+                    width="100%"
+                    height="100%"
+                />
+            </div>
+
+            <!-- Mobile Fallback (PDFs don't render well on mobile browsers) -->
+            <div id="pdf-mobile" class="d-md-none mobile-fallback">
+                <div class="fallback-icon">
+                    <i class="bi bi-file-earmark-pdf"></i>
+                </div>
+                <h3>PDF Preview</h3>
+                <p class="px-3">
+                    Mobile browsers cannot display PDFs directly in the page. 
+                    Please download or open the CV to view it.
+                </p>
+                <div class="d-flex flex-column gap-2 px-4">
+                    <a href="paul-offei-cv.pdf" class="btn btn-cv btn-lg" download>
+                        <i class="bi bi-download me-2"></i>Download CV
+                    </a>
+                    <a href="paul-offei-cv.pdf" class="btn btn-cv btn-cv-secondary btn-lg" target="_blank">
+                        <i class="bi bi-box-arrow-up-right me-2"></i>Open in Browser
+                    </a>
+                </div>
+            </div>
+
+            <!-- Universal Fallback (if embed fails) -->
+            <noscript>
+                <div class="mobile-fallback">
+                    <div class="fallback-icon">
+                        <i class="bi bi-file-earmark-pdf"></i>
+                    </div>
+                    <h3>Unable to Display PDF</h3>
+                    <p>Your browser does not support embedded PDFs.</p>
+                    <a href="paul-offei-cv.pdf" class="btn btn-cv" download>
+                        <i class="bi bi-download me-2"></i>Download CV
+                    </a>
+                </div>
+            </noscript>
         </div>
     </div>
+
+    <!-- Bootstrap 5 JS Bundle -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+    
+    <script>
+        // Graceful fallback: if embed fails to load, show mobile fallback
+        document.addEventListener('DOMContentLoaded', function() {
+            const embed = document.querySelector('embed');
+            const desktopDiv = document.getElementById('pdf-desktop');
+            const mobileDiv = document.getElementById('pdf-mobile');
+            
+            // Check if we're on a touch device or small screen
+            const isMobile = /iPhone|iPad|iPod|Android/i.test(navigator.userAgent) || window.innerWidth < 768;
+            
+            if (isMobile) {
+                desktopDiv.classList.add('d-none');
+                mobileDiv.classList.remove('d-none');
+            }
+            
+            // Optional: Detect if PDF failed to load and show fallback
+            setTimeout(function() {
+                try {
+                    if (embed && embed.readyState === 'undefined' && !isMobile) {
+                        desktopDiv.classList.add('d-none');
+                        mobileDiv.classList.remove('d-none');
+                    }
+                } catch(e) {
+                    // Silent fail
+                }
+            }, 3000);
+        });
+    </script>
 </body>
 </html>
